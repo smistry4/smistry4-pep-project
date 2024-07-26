@@ -47,11 +47,12 @@ public class MessageService {
 
     public Message updateMessageById(int id, String text) {
         if (getMessageById(id) != null &&
-            text.length() > 0 &&
+            !text.isEmpty() &&
             text.length() <= 255) {
                 messageDao.updateMessage(id, text);
+                return getMessageById(id);
         }
-        return getMessageById(id); 
+        return null; 
     }
 
     public List<Message> getAllMessagesByUser(int userId) {

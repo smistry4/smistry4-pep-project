@@ -28,7 +28,7 @@ public class AccountService {
         Account retrievedAccount = accountDao.getAccountByUsername(account.getUsername());
         
         if (retrievedAccount != null &&
-            retrievedAccount.getPassword() == account.getPassword()) {
+            retrievedAccount.getPassword().equals(account.getPassword())) {
                 return retrievedAccount;
         }
         return null;
