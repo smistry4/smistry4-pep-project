@@ -9,6 +9,10 @@ import java.util.ArrayList;
 
 public class MessageDao {
     
+    /**
+     * This method fetches all messages contained in the database.
+     * @return a list of messages
+     */
     public List<Message> getAllMessages() {
         Connection conn = ConnectionUtil.getConnection();
         List<Message> messages = new ArrayList<>();
@@ -26,6 +30,11 @@ public class MessageDao {
         return messages;
     }
     
+    /**
+     * This messages fetches a messages using the message_id.
+     * @param id to find the message
+     * @return Message retrieved using message_id.
+     */
     public Message getMessageById(int id) {
         Connection conn = ConnectionUtil.getConnection();
         try {
@@ -43,6 +52,11 @@ public class MessageDao {
         return null;
     }
     
+    /**
+     * This method adds a message to the database.
+     * @param message contains the information to add.
+     * @return the newly added Message.
+     */
     public Message insertMessage(Message message) {
         Connection conn = ConnectionUtil.getConnection();
         try {
@@ -66,6 +80,11 @@ public class MessageDao {
         return null;
     }
     
+    /**
+     * This method updates the content of the message.
+     * @param id used to locate the message to update
+     * @param text the new content to be placed in the message
+     */
     public void updateMessage(int id, String text) {
         Connection conn = ConnectionUtil.getConnection();
         try {
@@ -80,6 +99,10 @@ public class MessageDao {
         }
     }
     
+    /**
+     * This method deletes the message from the database
+     * @param id used to locate which message to delete
+     */
     public void deleteMessage(int id) {
         Connection conn = ConnectionUtil.getConnection();
         try {
@@ -93,6 +116,11 @@ public class MessageDao {
         }
     }
     
+    /**
+     * This method fetches all messages by a particular user.
+     * @param posted_by used to locate messages by a particular user
+     * @return
+     */
     public List<Message> getAllMessagesByUser(int posted_by) {
         Connection conn = ConnectionUtil.getConnection();
         List<Message> messagesByUser = new ArrayList<>();

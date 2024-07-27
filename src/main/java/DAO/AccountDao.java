@@ -6,9 +6,14 @@ import Util.ConnectionUtil;
 import java.sql.*;
 
 public class AccountDao {
+
+    /**
+     * This method inserts a new user based on the information provided.
+     * @param account which contain user information like username and passowrd.
+     * @return the newly created user Account
+     */
     public Account insertUser(Account account) {
         Connection conn = ConnectionUtil.getConnection();
-        
         try {
             String username = account.getUsername();
             String password = account.getPassword();
@@ -31,12 +36,15 @@ public class AccountDao {
         return null;
     }
     
+    /**
+     * This method fetches user account using username
+     * @param username to find the user account
+     * @return Account containing information about the user with username
+     */
     public Account getAccountByUsername(String username) {
         Connection conn = ConnectionUtil.getConnection();
-        
         try {
             String sql = "SELECT * FROM account WHERE username=(?)";
-            
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, username);
             
@@ -48,16 +56,18 @@ public class AccountDao {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        
         return null;
     }
     
+    /**
+     * This method fetches a user account using the account_id.
+     * @param id to find the user account
+     * @return Account containing information about the user with account_id.
+     */
     public Account getAccountById(int id) {
         Connection conn = ConnectionUtil.getConnection();
-        
         try {
             String sql = "SELECT * FROM account WHERE account_id=(?)";
-            
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
             
@@ -69,7 +79,6 @@ public class AccountDao {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        
         return null;
     }
 }
